@@ -77,7 +77,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date
+            date(formatString: "MMMM Do, YYYY")
           }
           excerpt
         }

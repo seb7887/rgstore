@@ -48,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
   Array.from({ length: totalPages }).forEach((_, index) => {
     const currentPage = index + 1;
     const isFirstPage = index === 0;
-    const isLastPage = index === totalPages;
+    const isLastPage = currentPage === totalPages;
 
     createPage({
       path: isFirstPage ? '/blog' : `/blog/${currentPage}`,
