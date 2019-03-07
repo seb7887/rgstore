@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+
 module.exports = {
   siteMetadata: {
     title: `RGStore`,
@@ -14,8 +20,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -42,6 +46,8 @@ module.exports = {
         path: `${__dirname}/src/posts`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -52,6 +58,13 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
