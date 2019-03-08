@@ -4,6 +4,12 @@ import React from 'react';
 
 import gastbyLogo from '../images/gatsby-icon.png';
 
+const isActive = ({ isCurrent }) => {
+  return { className: isCurrent ? 'active' : 'navlink' };
+}
+
+const NavLink = props => <Link getProps={isActive} {...props} />;
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -18,6 +24,8 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}
     >
       <img
@@ -26,7 +34,7 @@ const Header = ({ siteTitle }) => (
         style={{ width: '50px', height: '50px' }}
       />
       <h1 style={{ margin: 0 }}>
-        <Link
+        <NavLink
           to="/"
           style={{
             color: `white`,
@@ -34,8 +42,40 @@ const Header = ({ siteTitle }) => (
           }}
         >
           {siteTitle}
-        </Link>
+        </NavLink>
       </h1>
+
+      <NavLink
+        to='/products'
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+        }}
+      >
+        Products
+      </NavLink>
+      <NavLink
+        to='/blog'
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+        }}
+      >
+        Blog
+      </NavLink>
+
+      {/* Shopping Cart Summary */}
+      <div
+        className='snipcart-summary snipcart-checkout'
+        style={{
+          color: 'white',
+          cursor: 'pointer'
+        }}
+      >
+        <div><strong>My Cart</strong></div>
+        <div><span  style={{ fontWeight: 'bold'}} className='snipcart-total-items'></span>{' '}Items in Cart</div>
+        <div>Total Price{' '}<span style={{ fontWeight: 'bold' }} className='snipcart-total-price'></span></div>
+      </div>
     </div>
   </header>
 );
